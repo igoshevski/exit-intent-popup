@@ -1,18 +1,36 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <script type="text/javascript" src="js/bioep.min.js"></script>
+    <script type="text/javascript" src="js/bioep.js"></script>
     
     <script type="text/javascript">
       bioEp.init({
-        html: '<div id="content">This is a simple popup</div>',
-        css: '#content {font-family: "Titillium Web", sans-serif; font-size: 14px;}',
-		    cookieExp: 0
+        uid: 'entry-1',   // required if cookie or once per sessions is required
+        html: 'content1.html',
+        delay: 5, // default value, means the mouseout event is attached after 5 seconds,
+                  // the user navigating out of the viewport before this timeout will not be presented with the dialog 
+        showOncePerSession: false   // default, true means show only once in current browser session, won't work if uid is missing
+      });        
+
+      bioEp.init({
+        html: 'content2.html',
+        showOnDelay: true,
+        delay: 30
+      });
+
+      bioEp.init({
+        uid: 'telekom-ad-1',   // required if cookie or once per sessions is required
+        html: 'content3.html',
+        showOnDelay: true,
+        delay: 1, // seconds
+		    cookieExp: 1 // days, default is 30
       });
     </script>
   </head>
   
   <body>
-    <p>Move your cusor above this window after 5 seconds.</p>
+    <p>Entry popup will occcur 1s after the page is loaded. Cookie will expire after one day.</p>
+    <p>Delayed popup will occcur 30s after the page is loaded.</p>
+    <p>Move your cusor above this window after 5 seconds to see exit popup.</p>
   </body>
 </html>
